@@ -50,33 +50,45 @@ class MealDetailScreen extends StatelessWidget {
           ),
           builtSectionTitle(context, 'Ingredients'),
           builtContainer(
-             ListView.builder(
-                itemBuilder: (ctx, index) => Card(
-                  color: Theme.of(context).canvasColor,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                    child: Text(selectedMeal.ingredients[index]),
-                  ),
+            ListView.builder(
+              itemBuilder: (ctx, index) => Card(
+                color: Theme.of(context).canvasColor,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                  child: Text(selectedMeal.ingredients[index]),
                 ),
-                itemCount: selectedMeal.ingredients.length,
               ),
-          ),
-        
-          builtSectionTitle(context, 'Steps'),
-          builtContainer(ListView.builder(
-            itemBuilder: (ctx, index) => Column(
-              children: [ListTile(
-                leading: CircleAvatar(
-                  child: Text('# ${(index+1)}'),
-                ),
-                title:Text(selectedMeal.steps[index],)
-              ),Divider()
-              ], 
+              itemCount: selectedMeal.ingredients.length,
             ),
-            itemCount: selectedMeal.steps.length,
-          ),)
+          ),
+          builtSectionTitle(context, 'Steps'),
+          builtContainer(
+            ListView.builder(
+              itemBuilder: (ctx, index) => Column(
+                children: [
+                  ListTile(
+                      leading: CircleAvatar(
+                        child: Text('# ${(index + 1)}'),
+                      ),
+                      title: Text(
+                        selectedMeal.steps[index],
+                      )),
+                  Divider()
+                ],
+              ),
+              itemCount: selectedMeal.steps.length,
+            ),
+          )
         ]),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.delete,
+        ),
+        onPressed: () {
+          Navigator.of(context).pop(mealId);
+        },
       ),
     );
   }
